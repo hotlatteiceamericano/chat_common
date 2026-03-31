@@ -19,9 +19,14 @@ impl User {
         }
     }
 
-    pub fn id(&self) -> Option<&str> {
-        self.id.as_deref()
+    pub fn id(&self) -> u32 {
+        self.id
+            .as_deref()
+            .expect("expecting MongoDB to auto generate user id upon insertion")
+            .parse::<u32>()
+            .expect("expect user id to be numeric")
     }
+
     pub fn display_name(&self) -> &str {
         self.display_name.as_str()
     }
@@ -32,7 +37,7 @@ impl<'a> From<&'a User> for ListItem<'a> {
         ListItem::new(Line::from(format!(
             "{}({})",
             value.display_name(),
-            value.id().unwrap_or("")
+            value.id()
         )))
     }
 }

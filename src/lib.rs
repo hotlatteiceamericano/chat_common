@@ -1,3 +1,4 @@
+pub mod auth_response;
 pub mod claim;
 pub mod login_response;
 pub mod message;

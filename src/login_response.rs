@@ -1,9 +1,10 @@
 use axum::{Json, response::IntoResponse};
 use serde::{Deserialize, Serialize};
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct LoginResponse {
     pub plain_otp: String,
+    pub user_id: u32,
 }
 
 impl IntoResponse for LoginResponse {

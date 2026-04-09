@@ -20,12 +20,10 @@ impl User {
         }
     }
 
-    pub fn id(&self) -> u32 {
+    pub fn id(&self) -> String {
         self.id
             .expect("expecting MongoDB to auto generate user id upon insertion")
             .to_hex()
-            .parse::<u32>()
-            .unwrap_or_else(|e| panic!("expect user id to be numeric, : {e}"))
     }
 
     pub fn display_name(&self) -> &str {

@@ -1,4 +1,3 @@
-use mongodb::bson::oid::ObjectId;
 use ratatui::{text::Line, widgets::ListItem};
 use serde::{Deserialize, Serialize};
 
@@ -6,7 +5,7 @@ use serde::{Deserialize, Serialize};
 pub struct User {
     #[cfg_attr(feature = "mongodb", serde(rename = "_id",))]
     #[serde(skip_serializing_if = "Option::is_none", default)]
-    id: Option<ObjectId>,
+    id: Option<String>,
     display_name: String,
     email: String,
 }
@@ -22,8 +21,8 @@ impl User {
 
     pub fn id(&self) -> u32 {
         self.id
+            .as_deref()
             .expect("expecting MongoDB to auto generate user id upon insertion")
-            .to_hex()
             .parse::<u32>()
             .expect("expect user id to be numeric")
     }

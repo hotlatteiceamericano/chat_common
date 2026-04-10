@@ -29,6 +29,10 @@ impl User {
     pub fn display_name(&self) -> &str {
         self.display_name.as_str()
     }
+
+    pub fn email(&self) -> &str {
+        self.email.as_str()
+    }
 }
 
 impl<'a> From<&'a User> for ListItem<'a> {

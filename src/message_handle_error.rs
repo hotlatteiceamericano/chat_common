@@ -11,7 +11,7 @@ use crate::message::Message;
 #[derive(Debug, Error)]
 pub enum MessageHandleError {
     #[error("user id not found: {id}")]
-    ReceiverNotFound { id: u32 },
+    ReceiverNotFound { id: String },
 
     #[error("invalid message format")]
     InvalidMessageFormat {
